@@ -85,11 +85,11 @@ public class Restaurant {
     }
 
     public int getOrderValue(List<Item> item){
-        int total_order_value = 0;
+        int totalOrderValue = 0;
         for (Item Item : item) {
-            total_order_value += Item.getPrice();
+            totalOrderValue += Item.getPrice();
         }
-        return total_order_value;
+        return totalOrderValue;
     }
 
 }
