@@ -16,7 +16,7 @@ public class Restaurant {
         this.openingTime = openingTime;
         this.closingTime = closingTime;
 
-        this.menu.add(new Item("French Fries",50));
+        this.menu.add(new Item("French Fries",60));
         this.menu.add(new Item("Burger",100));
     }
 
