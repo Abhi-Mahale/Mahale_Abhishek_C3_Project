@@ -3,18 +3,21 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RestaurantTest {
      Restaurant restaurant;
+    List<Item> spoof = new ArrayList<Item>();
     //REFACTORED ALL THE REPEATED LINES OF CODE Below
     public void restaurantDetails() {
         LocalTime openingTime = LocalTime.parse("10:30:00");
         LocalTime closingTime = LocalTime.parse("22:00:00");
         restaurant =new Restaurant("Amelie's cafe","Chennai",openingTime,closingTime);
         restaurant.addToMenu("Sweet corn soup",100);
-        restaurant.addToMenu("Vegetable lasagne", 269);
+       // restaurant.addToMenu("Vegetable lasagne", 269);
     }
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>OPEN/CLOSED<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
@@ -39,6 +42,25 @@ class RestaurantTest {
     }
 
     //<<<<<<<<<<<<<<<<<<<<<<<<<OPEN/CLOSED>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    //<<<<<<<<<order total value >>>>>>>>>>>>
+
+    @Test
+    public void order_value_should_give_sum_total_of_items_selected(){
+        restaurantDetails();
+        spoof = restaurant.getMenu();
+        assertEquals(506,restaurant.getOrderValue(spoof));
+    }
+
+    @Test
+    public void order_value_should_reduce_sum_total_of_item_when_an_item_removed(){
+        restaurantDetails();
+        spoof = restaurant.getMenu();
+        int actualTotal = restaurant.getOrderValue(spoof);
+        int afterTotal = spoof.get(1).getPrice();
+        spoof.remove(2);
+        assertEquals(actualTotal-afterTotal,restaurant.getOrderValue(spoof));
+    }
 
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>MENU<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<

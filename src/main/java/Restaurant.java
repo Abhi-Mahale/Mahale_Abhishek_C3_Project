@@ -84,4 +84,12 @@ public class Restaurant {
         return name;
     }
 
+    public int getOrderValue(List<Item> item){
+        int total_order_value = 0;
+        for (Item Item : item) {
+            total_order_value += Item.getPrice();
+        }
+        return total_order_value;
+    }
+
 }
