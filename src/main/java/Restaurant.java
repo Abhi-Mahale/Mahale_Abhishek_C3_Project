@@ -18,26 +18,35 @@ public class Restaurant {
 
         this.menu.add(new Item("French Fries",50));
         this.menu.add(new Item("Burger",100));
-
     }
+
+    public LocalTime getCurrentTime(){ return  LocalTime.now(); }
+
+    public LocalTime getOpeningTime() { return openingTime; }
+
+    public void setOpeningTime(LocalTime openingTime) {
+        this.openingTime = openingTime;
+    }
+
+    public LocalTime getClosingTime() { return closingTime; }
+
+    public void setClosingTime(LocalTime closingTime) {
+        this.closingTime = closingTime;
+    }
+
 
     public boolean isRestaurantOpen() {
         //return true;
         //DELETE ABOVE STATEMENT AND WRITE CODE HERE
-
-        LocalTime currentTime=getCurrentTime();
-
-         if (currentTime.isAfter(openingTime) && currentTime.isBefore(closingTime))
-        {
+        LocalTime time = LocalTime.now();
+        int isRestaurantStillOpen = time.compareTo(closingTime);
+        int isRestaurantOpen = time.compareTo(openingTime);
+        if(isRestaurantStillOpen<0&&isRestaurantOpen>=0){
             return true;
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 
-    public LocalTime getCurrentTime(){ return  LocalTime.now(); }
 
     public List<Item> getMenu() {
         //return null;

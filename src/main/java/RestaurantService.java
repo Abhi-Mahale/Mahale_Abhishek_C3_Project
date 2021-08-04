@@ -8,7 +8,7 @@ public class RestaurantService {
     public Restaurant findRestaurantByName(String restaurantName) throws restaurantNotFoundException{
         //return null;
         //DELETE ABOVE STATEMENT AND WRITE CODE HERE
-        for (int i=0; i<restaurants.size();i++)
+        for (int i=1; i<restaurants.size()-1;i++)
         {
             Restaurant restaurant= getRestaurants().get(i);
             if(restaurant.getName().equals(restaurantName)){
